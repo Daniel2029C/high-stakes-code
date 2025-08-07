@@ -1,0 +1,60 @@
+#include "autons/positiveBlueElims.h"
+
+
+void positiveBlueElims(vex::task& lbResetTask, vex::task& colorSortTask, vex::task& colorStopTask, vex::task& colorStopTask2, Odometry& odometry, MotorGroup& intakeMotors, Intake& intake, MotorGroup& lbMotors, WallStakeMech& ladyBrown, Motion& motion) {
+        odometry.setPos(0, 0);
+        odometry.setHeading(-19);
+        imu.setRotation(-19, vex::deg);
+        lbMotors.setPosition(0);
+        lbResetTask.resume();
+        motion.turnHeading(-19, 0, 0, 0, 0);
+        colorStopTask2.resume();
+        intakeMotors.spin(8);
+    motion.moveDist2(2.5, 1, 1200);
+        doinker = true;
+    motion.moveDist(0.4, 1, 2000);
+    motion.moveDist(-2.2, 1, 2000);
+        doinker = false;
+        wait(100, vex::msec);
+    motion.turnHeading(170, 2, 0, 1, 1200);
+    motion.moveDist2(-0.7, 1, 1200);
+    motion.moveDist(-1.2, 0.6, 1200);
+        clamp = true;
+        wait(130, vex::msec);
+        colorSortTask.resume();
+        colorStopTask2.suspend();
+    motion.moveDist(1.15, 1, 2000);
+        doinker = true;
+        wait(200, vex::msec);
+    motion.turnHeading(-90, 2, 0, 1, 650);
+        doinker = false;
+    motion.turnHeading(170, 2, 0, 1, 650);
+    motion.moveDist(0.48, 1, 1000, 0);
+    motion.turnHeading(-135, 2, 0, 1, 1000);
+    motion.moveDist2(1.45, 1, 1000);
+    motion.moveDist2(1, 0.3, 1200);
+        wait(300, vex::msec);
+    motion.moveDist(-0.4, 1, 1000);
+        intakeLift = true;
+    motion.moveDist2(0.4, 0.4, 1200);
+        wait(300, vex::msec);
+        intakeLift = false;
+    motion.moveDist(-1.5, 0.75, 1500);
+    motion.turnHeading(90, 2, 0, 1, 1000);
+        clamp = false;
+    motion.moveDist(-0.6, 1, 1200);
+        colorSortTask.suspend();
+        colorStopTask2.resume();
+        intakeMotors.spin(8);
+    motion.moveDist(2.2, 1, 3000);
+    motion.turnHeading(-165, 2, 0, 1, 2000);
+    motion.moveDist2(-0.5, 1, 1000);
+    motion.moveDist(-1.2, 0.6, 1200);
+        clamp = true;
+        wait(130, vex::msec);
+        colorStopTask2.suspend();
+        intakeMotors.spin(12);
+        colorStopTask.resume();
+    motion.turnHeading(-90, 2, 0, 1, 1000);
+    motion.moveDist(2.5, 1, 2000);
+}

@@ -1,0 +1,52 @@
+#include "autons/soloAWPRed.h"
+
+
+void soloAWPRed(vex::task& lbResetTask, vex::task& colorSortTask, vex::task& colorStopTask, Odometry& odometry, MotorGroup& intakeMotors, MotorGroup& lbMotors, WallStakeMech& ladyBrown, Motion& motion) {
+        odometry.setPos(0, 0);
+        odometry.setHeading(130);
+        imu.setRotation(130, vex::deg);
+        lbMotors.setPosition(350);
+        motion.turnHeading(130, 0, 0, 0, 0);
+        lbResetTask.resume();
+        ladyBrown.setResetSetpoint(1960);
+    while (fabs(lbMotors.getPosition()) < 1900) wait(10, vex::msec);
+    motion.moveDist(-0.4, 1, 600);
+        ladyBrown.setResetSetpoint(0);
+    motion.turnHeading(170, 2, 0, 1, 2000);
+    motion.moveDist2(-1, 1, 1200);
+    motion.moveDist(-1.75, 0.6, 1200);
+        clamp = true;
+        wait(130, vex::msec);
+        colorSortTask.resume();
+    motion.turnHeading(-47, 2, 0, 1, 1200);
+    motion.moveDist(1.65, 1, 1000);
+    motion.turnHeading(-75, 2, 0, 1, 1000);
+    motion.moveDist(0.6, 0.55, 1200);
+    motion.turnHeading(180, 2, 0, 1, 800);
+    motion.moveDist(0.75, 1, 700);
+    motion.turnHeading(145, 2, 0, 1, 400);
+    motion.moveDist(3.3, 1, 1200);
+    motion.turnHeading(90, 2, 0, 1, 1200);
+        clamp = false;
+        colorSortTask.suspend();
+        colorStopTask.resume();
+        intakeMotors.spin(9.5);
+    motion.moveDist(1, 1, 1000);
+    motion.moveDist(2.8, 0.6, 1500);
+    motion.moveDist(-1.3, 1, 1000);
+    motion.turnHeading(-150, 2, 0, 1, 2000);
+    motion.moveDist2(-1, 1, 1000);
+    motion.moveDist(-1.5, 0.6, 1200);
+        clamp = true;
+        wait(130, vex::msec);
+    motion.turnHeading(90, 2, 0, 1, 500);
+        colorStopTask.suspend();
+        colorSortTask.resume();
+    motion.moveDist(2, 1, 800, 0);
+        ladyBrown.setResetSetpoint(1540);
+    motion.turnHeading(-60, 2, 0, 1, 500);
+    motion.moveDist(2, 0.55, 10000);
+        lbResetTask.suspend();
+        colorSortTask.suspend();
+        intakeMotors.stop();
+}

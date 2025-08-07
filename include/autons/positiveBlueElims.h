@@ -1,0 +1,15 @@
+#pragma once
+
+#include "main.h"
+#include "components/Intake.h"
+#include "components/MotorGroup.h"
+#include "components/WallStakeMech.h"
+#include "motionControl/Motion.h"
+#include "motionControl/Odometry.h"
+#include "motionControl/PID.h"
+#include "utility/Misc.h"
+#include "utility/Pose.h"
+#include "utility/Units.h"
+
+
+void positiveBlueElims(vex::task& lbResetTask, vex::task& colorSortTask, vex::task& colorStopTask, vex::task& colorStopTask2, Odometry& odometry, MotorGroup& intakeMotors, Intake& intake, MotorGroup& lbMotors, WallStakeMech& ladyBrown, Motion& motion);
