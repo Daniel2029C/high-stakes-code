@@ -21,5 +21,6 @@ void AsymptoticGains::setGain(float setpoint) {
 float AsymptoticGains::getGain() {
   //returns the gain value
 
-  return (f - i) * pow(fabs(setpoint), p) / ((pow(fabs(setpoint), p)) + pow(k, p)) + i;
+  return (f - i) * pow(fabs(setpoint), p) / ((pow(fabs(setpoint), p)) + pow(k, p)) + i; // https://www.desmos.com/calculator/cd4c3fb81b
+
 }
